@@ -8,7 +8,7 @@ What you can do with it:
 - search/filter in customers or products
 
 Bugs to fix:
-- view window is not always correct after deleting of data rows
+- view window is not always correct after deleting data rows
 
 To Do's:
 - add TextChanged to be able to save every change?
