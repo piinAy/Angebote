@@ -25,7 +25,7 @@ namespace _06_Angebote
     /// </summary>
     public partial class MainWindow : Window
     {
-        //test
+        //testtest
         public ObservableCollection<Product> Products => Product.Products; //expression-bodied members??? kp aber ich habe mir dadurch das ständige
                                                                            //schreiben der Klassennamen.blabla erspart, außer bei den Load Methoden ging es nicht
         public ObservableCollection<Customer> Customers => Customer.Customers;
