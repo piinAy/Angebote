@@ -9,6 +9,7 @@ What you can do with it:
 
 Bugs to fix:
 - view window is not always correct after deleting of data rows
+- search/filter feature is still not working properly
 
 To Do's:
 - add TextChanged to be able to save every change?
