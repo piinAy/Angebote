@@ -95,30 +95,34 @@ namespace _06_Angebote
                 string searchText = SearchInput.Text.ToLower();
                 if (CustomersOrProducts.SelectedIndex == 0) //erster Index d.h. erste Wert in der ComboBox
                 {
-                    filteredCustomers = new ObservableCollection<Customer>(Customers.Where(c =>
+                    var recommendedCustomers = new ObservableCollection<Customer>(Customers.Where(c =>
                         c.FirstName.ToLower().Contains(searchText) ||
                         c.LastName.ToLower().Contains(searchText) ||
                         c.Age.ToString().Contains(searchText) ||
                         c.Email.ToLower().Contains(searchText)).ToList());
 
-                    if (filteredCustomers.Count > 0)
+                    ClearDataGrid();
+
+                    if (recommendedCustomers.Count > 0)
                     {
-                        PrepareDataGridForCustomers(filteredCustomers);
+                        PrepareDataGridForCustomers(recommendedCustomers);
                         ShowButtons("Produkte", "Kunden");
                     }
                 }
                 else if (CustomersOrProducts.SelectedIndex == 1)
                 {
-                    filteredProducts = new ObservableCollection<Product>(Products.Where(p =>
+                    var recommendedProducts = new ObservableCollection<Product>(Products.Where(p =>
                         p.Name.ToLower().Contains(searchText) ||
                         p.Description.ToLower().Contains(searchText) ||
                         p.Price.ToString().Contains(searchText) ||
                         p.AgeMin.ToString().Contains(searchText) ||
                         p.AgeMax.ToString().Contains(searchText)).ToList());
 
-                    if (filteredProducts.Count > 0)
+                    ClearDataGrid();
+
+                    if (recommendedProducts.Count > 0)
                     {
-                        PrepareDataGridForProducts(filteredProducts);
+                        PrepareDataGridForProducts(recommendedProducts);
                         ShowButtons("Kunden", "Produkte");
                     }
                 }
