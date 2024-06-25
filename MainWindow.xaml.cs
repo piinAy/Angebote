@@ -166,6 +166,7 @@ namespace _06_Angebote
         }
 
         //ich erstelle die Spalten bzw die Tabelle dynamisch weil ich verschiedene Tabellen habe
+        //oder über ContentControl zwei verschiedene Tabellen handhaben? Oder andere Form implementieren?
         private void PrepareDataGridForCustomers(ObservableCollection<Customer> customers)
         {
             OutputDataGrid.ItemsSource = customers;
@@ -414,8 +415,9 @@ namespace _06_Angebote
                 foreach (Customer selectedCustomer in OutputDataGrid.SelectedItems.Cast<Customer>().ToList())
                 {
                     Customers.Remove(selectedCustomer); //damit auch die Hauptliste aktuell ist
-                    recommendedCustomers.Remove(selectedCustomer); //das dient nur für die aktualisierte gefilterte Ansicht
-                    OutputDataGrid.ItemsSource = recommendedCustomers;
+                    //recommendedCustomers.Remove(selectedCustomer); //das dient nur für die aktualisierte gefilterte Ansicht
+                    //OutputDataGrid.ItemsSource = recommendedCustomers;
+                    OutputDataGrid.ItemsSource = Customers;
                 }
             }
             //else if (OutputDataGrid.ItemsSource == Products)
@@ -430,8 +432,9 @@ namespace _06_Angebote
                 foreach (Product selectedProduct in OutputDataGrid.SelectedItems.Cast<Product>().ToList())
                 {
                     Products.Remove(selectedProduct);
-                    recommendedProducts.Remove(selectedProduct);
-                    OutputDataGrid.ItemsSource = recommendedProducts;
+                    //recommendedProducts.Remove(selectedProduct);
+                    //OutputDataGrid.ItemsSource = recommendedProducts;
+                    OutputDataGrid.ItemsSource = Products;
                 }
             }
         }
