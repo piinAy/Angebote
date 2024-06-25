@@ -1,6 +1,6 @@
 What you can do with it:
 - create customers and products
-- depending on what you've created, you'll see offers/recommendations
+- depending on what you've created, you'll see offers/recommendations (if available)
 - created customers or products are each saved in a json file
 - display all customers or products if available
 - clear the view window
