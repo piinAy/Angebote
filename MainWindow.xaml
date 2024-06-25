@@ -1,0 +1,53 @@
+﻿<Window x:Class="_06_Angebote.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_06_Angebote"
+        mc:Ignorable="d"
+                Title="Angebote" Height="500" Width="505" Background="#FFB4E2ED">
+    <Grid>
+        <TextBox x:Name="SearchInput" HorizontalAlignment="Left" Margin="22,28,0,0" VerticalAlignment="Top" Width="334" Height="22"
+         Foreground="Gray" Text=" Suchen" GotFocus="SearchInput_GotFocus" LostFocus="SearchInput_LostFocus" TextChanged="SearchInput_TextChanged"/>
+        <ComboBox x:Name="CustomersOrProducts" Margin="355,28,0,0" SelectedIndex="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Height="22" SelectionChanged="CustomersOrProducts_SelectionChanged">
+            <ComboBoxItem Content="in Kunden"/>
+            <ComboBoxItem Content="in Produkten"/>
+        </ComboBox>
+        <Button x:Name="ShowCustomers" Content="Kunden anzeigen" HorizontalAlignment="Left" Margin="22,74,0,0" VerticalAlignment="Top" Click="ShowCustomers_Click" Width="199"/>
+        <Button x:Name="ShowProducts" Content="Produkte anzeigen" HorizontalAlignment="Left" Margin="240,74,0,0" VerticalAlignment="Top" Click="ShowProducts_Click" Width="227"/>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="22,115,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="199" Height="188"/>
+        <Label Content="Kundendaten eingeben:" HorizontalAlignment="Left" Margin="22,115,0,0" VerticalAlignment="Top"/>
+        <Label Content="Vorname:" HorizontalAlignment="Left" Margin="23,146,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="FirstNameInput" HorizontalAlignment="Left" Margin="91,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray"/>
+        <Label Content="Nachname:" HorizontalAlignment="Left" Margin="23,177,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.938,0.464"/>
+        <TextBox x:Name="LastNameInput" HorizontalAlignment="Left" Margin="91,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray"/>
+        <Label Content="Alter:" HorizontalAlignment="Left" Margin="23,206,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.938,0.464"/>
+        <TextBox x:Name="AgeInput" HorizontalAlignment="Left" Margin="91,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray"/>
+        <Label Content="E-Mail:" HorizontalAlignment="Left" Margin="23,234,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.938,0.464"/>
+        <TextBox x:Name="EMailInput" HorizontalAlignment="Left" Margin="91,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray"/>
+        <Button x:Name="CreateCustomer" Content="Kunde erstellen" HorizontalAlignment="Left" Margin="91,268,0,0" VerticalAlignment="Top" Width="120" Click="CreateCustomer_Click"/>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="241,115,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="227" Height="220"/>
+        <Label Content="Produktdaten eingeben:" HorizontalAlignment="Left" Margin="243,115,0,0" VerticalAlignment="Top"/>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="244,146,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="NameInput" HorizontalAlignment="Left" Margin="337,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray"/>
+        <Label Content="Beschreibung:" HorizontalAlignment="Left" Margin="244,177,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.938,0.464"/>
+        <TextBox x:Name="DescriptionInput" HorizontalAlignment="Left" Margin="337,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray"/>
+        <Label Content="Preis:" HorizontalAlignment="Left" Margin="244,206,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.938,0.464"/>
+        <TextBox x:Name="PriceInput" HorizontalAlignment="Left" Margin="337,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray"/>
+        <Label Content="Mindestalter:" HorizontalAlignment="Left" Margin="244,234,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.938,0.464"/>
+        <TextBox x:Name="AgeMinInput" HorizontalAlignment="Left" Margin="337,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray"/>
+        <Label Content="Maximalalter:" HorizontalAlignment="Left" Margin="244,265,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.938,0.464"/>
+        <TextBox x:Name="AgeMaxInput" HorizontalAlignment="Left" Margin="337,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray"/>
+        <Button x:Name="CreateProduct" Content="Produkt erstellen" HorizontalAlignment="Left" Margin="337,300,0,0" VerticalAlignment="Top" Width="120" Click="CreateProduct_Click"/>
+        <Button x:Name="ClearOutput" Content="Anzeige leeren" HorizontalAlignment="Left" Margin="22,315,0,0" VerticalAlignment="Top" Width="199" Click="ClearOutput_Click"/>
+        <DataGrid x:Name="OutputDataGrid" Margin="22,350,22,29" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" HeadersVisibility="None" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+        <Grid x:Name="ButtonsRecommendDelete" Margin="22,0,22,10" VerticalAlignment="Bottom" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="Recommend" Grid.Column="0" Click="Recommend_Click" Height="20"/>
+            <Button x:Name="Delete" Grid.Column="1" Click="Delete_Click" Height="20"/>
+        </Grid>
+    </Grid>
+</Window>
