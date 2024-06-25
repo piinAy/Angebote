@@ -29,9 +29,9 @@ namespace _06_Angebote
                                                                            //schreiben der Klassennamen.blabla erspart, außer bei den Load Methoden ging es nicht
         public ObservableCollection<Customer> Customers => Customer.Customers;
 
-        private ObservableCollection<Customer> filteredCustomers; //nochmal zwei Collections, die nur die Empfehlungen anzeigen/der Suche entsprechen
+        private ObservableCollection<Customer> recommendedCustomers; //nochmal zwei Collections, die nur die Empfehlungen anzeigen/der Suche entsprechen
 
-        private ObservableCollection<Product> filteredProducts;
+        private ObservableCollection<Product> recommendedProducts;
 
 
         public MainWindow()
@@ -95,7 +95,7 @@ namespace _06_Angebote
                 string searchText = SearchInput.Text.ToLower();
                 if (CustomersOrProducts.SelectedIndex == 0) //erster Index d.h. erste Wert in der ComboBox
                 {
-                    var recommendedCustomers = new ObservableCollection<Customer>(Customers.Where(c =>
+                    var filteredCustomers = new ObservableCollection<Customer>(Customers.Where(c =>
                         c.FirstName.ToLower().Contains(searchText) ||
                         c.LastName.ToLower().Contains(searchText) ||
                         c.Age.ToString().Contains(searchText) ||
@@ -103,15 +103,15 @@ namespace _06_Angebote
 
                     ClearDataGrid();
 
-                    if (recommendedCustomers.Count > 0)
+                    if (filteredCustomers.Count > 0)
                     {
-                        PrepareDataGridForCustomers(recommendedCustomers);
+                        PrepareDataGridForCustomers(filteredCustomers);
                         ShowButtons("Produkte", "Kunden");
                     }
                 }
                 else if (CustomersOrProducts.SelectedIndex == 1)
                 {
-                    var recommendedProducts = new ObservableCollection<Product>(Products.Where(p =>
+                    var filteredProducts = new ObservableCollection<Product>(Products.Where(p =>
                         p.Name.ToLower().Contains(searchText) ||
                         p.Description.ToLower().Contains(searchText) ||
                         p.Price.ToString().Contains(searchText) ||
@@ -120,9 +120,9 @@ namespace _06_Angebote
 
                     ClearDataGrid();
 
-                    if (recommendedProducts.Count > 0)
+                    if (filteredProducts.Count > 0)
                     {
-                        PrepareDataGridForProducts(recommendedProducts);
+                        PrepareDataGridForProducts(filteredProducts);
                         ShowButtons("Kunden", "Produkte");
                     }
                 }
@@ -222,6 +222,7 @@ namespace _06_Angebote
             }
 
             var newProduct = new Product(NameInput.Text, DescriptionInput.Text, int.Parse(PriceInput.Text), int.Parse(AgeMinInput.Text), int.Parse(AgeMaxInput.Text));
+
             Products.Add(newProduct);
 
             //Felder leeren
@@ -255,10 +256,10 @@ namespace _06_Angebote
 
         private void RecommendProductsForNewCustomer(Customer customer)
         {
-            var filteredProducts = Products.Where(p =>
+            var recommendedProducts = Products.Where(p =>
                 p.AgeMin <= customer.Age && p.AgeMax >= customer.Age);
 
-            if (!filteredProducts.Any())
+            if (!recommendedProducts.Any())
             {
                 ClearDataGrid();
                 MessageBox.Show("Keine Produkte zum Empfehlen gefunden!");
@@ -267,17 +268,17 @@ namespace _06_Angebote
             else
             {
                 MessageBox.Show("Folgende Produkte sind für diesen Kunden zu empfehlen:"); //vor der Meldung sieht man aktuelle Grid, besser ohne
-                PrepareDataGridForProducts(new ObservableCollection<Product>(filteredProducts)); //ich mache eine neue Liste, die alte wird aber nicht überschrieben
+                PrepareDataGridForProducts(new ObservableCollection<Product>(recommendedProducts)); //ich mache eine neue Liste, die alte wird aber nicht überschrieben
                 ShowButtons("Kunden", "Produkte");
             }
         }
 
         private void RecommendCustomersForNewProduct(Product product)
         {
-            var filteredCustomers = Customers.Where(c =>
+            var recommendedCustomers = Customers.Where(c =>
                 c.Age >= product.AgeMin && c.Age <= product.AgeMax);
 
-            if (!filteredCustomers.Any())
+            if (!recommendedCustomers.Any())
             {
                 ClearDataGrid();
                 MessageBox.Show("Keine Kunden zum Empfehlen gefunden!");
@@ -286,7 +287,7 @@ namespace _06_Angebote
             else
             {
                 MessageBox.Show("Folgende Kunden sind für dieses Produkt zu empfehlen:");
-                PrepareDataGridForCustomers(new ObservableCollection<Customer>(filteredCustomers));
+                PrepareDataGridForCustomers(new ObservableCollection<Customer>(recommendedCustomers));
                 ShowButtons("Produkte", "Kunden");
             }
         }
@@ -345,9 +346,9 @@ namespace _06_Angebote
                 //var recommendedProducts = Products.Where(p =>
                 //    p.AgeMin <= selectedCustomer.Age && p.AgeMax >= selectedCustomer.Age);
                 //ich erstelle hier nun die Collection mit den Empfehlungen
-                filteredProducts = new ObservableCollection<Product>(Products.Where(p => p.AgeMin <= selectedCustomer.Age && p.AgeMax >= selectedCustomer.Age));
+                recommendedProducts = new ObservableCollection<Product>(Products.Where(p => p.AgeMin <= selectedCustomer.Age && p.AgeMax >= selectedCustomer.Age));
 
-                if (!filteredProducts.Any())
+                if (!recommendedProducts.Any())
                 {
                     MessageBox.Show("Keine Produkte zum Empfehlen gefunden!");
                     //return;
@@ -355,20 +356,20 @@ namespace _06_Angebote
                 else
                 {
                     MessageBox.Show("Folgende Produkte sind für diesen Kunden zu empfehlen:");
-                    PrepareDataGridForProducts(filteredProducts);
+                    PrepareDataGridForProducts(recommendedProducts);
                     ShowButtons("Kunden", "Produkte");
                 }
             }
-            return filteredProducts;
+            return recommendedProducts;
         }
 
         private ObservableCollection<Customer> RecommendCustomers()
         {
             if (OutputDataGrid.SelectedItem is Product selectedProduct)
             {
-                filteredCustomers = new ObservableCollection<Customer>(Customers.Where(c => c.Age >= selectedProduct.AgeMin && c.Age <= selectedProduct.AgeMax));
+                recommendedCustomers = new ObservableCollection<Customer>(Customers.Where(c => c.Age >= selectedProduct.AgeMin && c.Age <= selectedProduct.AgeMax));
 
-                if (!filteredCustomers.Any())
+                if (!recommendedCustomers.Any())
                 {
                     MessageBox.Show("Keine Kunden zum Empfehlen gefunden!");
                 }
@@ -376,13 +377,13 @@ namespace _06_Angebote
                 {
                     MessageBox.Show("Folgende Kunden sind für dieses Produkt zu empfehlen:");
                     //PrepareDataGridForCustomers(new ObservableCollection<Customer>(recommendedCustomers));
-                    PrepareDataGridForCustomers(filteredCustomers);
+                    PrepareDataGridForCustomers(recommendedCustomers);
                     ShowButtons("Produkte", "Kunden");
                 }
 
             }
 
-            return filteredCustomers;
+            return recommendedCustomers;
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -413,8 +414,8 @@ namespace _06_Angebote
                 foreach (Customer selectedCustomer in OutputDataGrid.SelectedItems.Cast<Customer>().ToList())
                 {
                     Customers.Remove(selectedCustomer); //damit auch die Hauptliste aktuell ist
-                    filteredCustomers.Remove(selectedCustomer); //das dient nur für die aktualisierte gefilterte Ansicht
-                    OutputDataGrid.ItemsSource = filteredCustomers;
+                    recommendedCustomers.Remove(selectedCustomer); //das dient nur für die aktualisierte gefilterte Ansicht
+                    OutputDataGrid.ItemsSource = recommendedCustomers;
                 }
             }
             //else if (OutputDataGrid.ItemsSource == Products)
@@ -429,8 +430,8 @@ namespace _06_Angebote
                 foreach (Product selectedProduct in OutputDataGrid.SelectedItems.Cast<Product>().ToList())
                 {
                     Products.Remove(selectedProduct);
-                    filteredProducts.Remove(selectedProduct);
-                    OutputDataGrid.ItemsSource = filteredProducts;
+                    recommendedProducts.Remove(selectedProduct);
+                    OutputDataGrid.ItemsSource = recommendedProducts;
                 }
             }
         }
