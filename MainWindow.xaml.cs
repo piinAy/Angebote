@@ -116,7 +116,7 @@ namespace _06_Angebote
                         p.AgeMin.ToString().Contains(searchText) ||
                         p.AgeMax.ToString().Contains(searchText)).ToList());
 
-                    if (filteredProducts.Count == 0)
+                    if (filteredProducts.Count > 0)
                     {
                         PrepareDataGridForProducts(filteredProducts);
                         ShowButtons("Kunden", "Produkte");
