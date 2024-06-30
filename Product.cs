@@ -130,7 +130,7 @@ namespace _06_Angebote
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null!) //! damit die Compiler Warnung geht geht, bzw man teilt mit, dass man sicher ist dass dieser Wert nicht null sein wird
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

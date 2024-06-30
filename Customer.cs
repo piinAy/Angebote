@@ -173,6 +173,5 @@ namespace _06_Angebote
 
             SaveCustomers();
         }
-
     }
 }
