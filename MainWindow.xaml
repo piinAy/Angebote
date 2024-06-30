@@ -5,49 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_06_Angebote"
         mc:Ignorable="d"
-                Title="Angebote" Height="500" Width="505" Background="#FFB4E2ED">
+                Title="Angebote" Height="515" Width="515" Background="#FFB4E2ED">
     <Grid>
-        <TextBox x:Name="SearchInput" HorizontalAlignment="Left" Margin="22,28,0,0" VerticalAlignment="Top" Width="334" Height="22"
+        <TextBox x:Name="SearchInput" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Width="351" Height="20"
          Foreground="Gray" Text=" Suchen" GotFocus="SearchInput_GotFocus" LostFocus="SearchInput_LostFocus" TextChanged="SearchInput_TextChanged"/>
-        <ComboBox x:Name="CustomersOrProducts" Margin="355,28,0,0" SelectedIndex="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Height="22" SelectionChanged="CustomersOrProducts_SelectionChanged">
+        <ComboBox x:Name="CustomersOrProducts" Margin="370,20,0,0" SelectedIndex="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="20" SelectionChanged="CustomersOrProducts_SelectionChanged">
             <ComboBoxItem Content="in Kunden"/>
             <ComboBoxItem Content="in Produkten"/>
         </ComboBox>
-        <Button x:Name="ShowCustomers" Content="Kunden anzeigen" HorizontalAlignment="Left" Margin="22,74,0,0" VerticalAlignment="Top" Click="ShowCustomers_Click" Width="199"/>
-        <Button x:Name="ShowProducts" Content="Produkte anzeigen" HorizontalAlignment="Left" Margin="240,74,0,0" VerticalAlignment="Top" Click="ShowProducts_Click" Width="227"/>
-        <Border BorderBrush="Black" BorderThickness="1" Margin="22,115,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="199" Height="188"/>
-        <Label Content="Kundendaten eingeben:" HorizontalAlignment="Left" Margin="22,115,0,0" VerticalAlignment="Top"/>
-        <Label Content="Vorname:" HorizontalAlignment="Left" Margin="23,146,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="FirstNameInput" HorizontalAlignment="Left" Margin="91,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray"/>
-        <Label Content="Nachname:" HorizontalAlignment="Left" Margin="23,177,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.938,0.464"/>
-        <TextBox x:Name="LastNameInput" HorizontalAlignment="Left" Margin="91,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray"/>
-        <Label Content="Alter:" HorizontalAlignment="Left" Margin="23,206,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.938,0.464"/>
-        <TextBox x:Name="AgeInput" HorizontalAlignment="Left" Margin="91,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray"/>
-        <Label Content="E-Mail:" HorizontalAlignment="Left" Margin="23,234,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.938,0.464"/>
-        <TextBox x:Name="EMailInput" HorizontalAlignment="Left" Margin="91,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray"/>
-        <Button x:Name="CreateCustomer" Content="Kunde erstellen" HorizontalAlignment="Left" Margin="91,268,0,0" VerticalAlignment="Top" Width="120" Click="CreateCustomer_Click"/>
-        <Border BorderBrush="Black" BorderThickness="1" Margin="241,115,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="227" Height="220"/>
-        <Label Content="Produktdaten eingeben:" HorizontalAlignment="Left" Margin="243,115,0,0" VerticalAlignment="Top"/>
-        <Label Content="Name:" HorizontalAlignment="Left" Margin="244,146,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="NameInput" HorizontalAlignment="Left" Margin="337,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray"/>
-        <Label Content="Beschreibung:" HorizontalAlignment="Left" Margin="244,177,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.938,0.464"/>
-        <TextBox x:Name="DescriptionInput" HorizontalAlignment="Left" Margin="337,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray"/>
-        <Label Content="Preis:" HorizontalAlignment="Left" Margin="244,206,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.938,0.464"/>
-        <TextBox x:Name="PriceInput" HorizontalAlignment="Left" Margin="337,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray"/>
-        <Label Content="Mindestalter:" HorizontalAlignment="Left" Margin="244,234,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.938,0.464"/>
-        <TextBox x:Name="AgeMinInput" HorizontalAlignment="Left" Margin="337,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray"/>
-        <Label Content="Maximalalter:" HorizontalAlignment="Left" Margin="244,265,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.938,0.464"/>
-        <TextBox x:Name="AgeMaxInput" HorizontalAlignment="Left" Margin="337,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray"/>
-        <Button x:Name="CreateProduct" Content="Produkt erstellen" HorizontalAlignment="Left" Margin="337,300,0,0" VerticalAlignment="Top" Width="120" Click="CreateProduct_Click"/>
-        <Button x:Name="ClearOutput" Content="Anzeige leeren" HorizontalAlignment="Left" Margin="22,315,0,0" VerticalAlignment="Top" Width="199" Click="ClearOutput_Click"/>
-        <DataGrid x:Name="OutputDataGrid" Margin="22,350,22,29" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" HeadersVisibility="None" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
-        <Grid x:Name="ButtonsRecommendDelete" Margin="22,0,22,10" VerticalAlignment="Bottom" Visibility="Hidden">
+        <Button x:Name="ShowCustomers" Content="Kunden anzeigen" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top" Click="ShowCustomers_Click" Width="220" Height="20"/>
+        <Button x:Name="ShowProducts" Content="Produkte anzeigen" HorizontalAlignment="Left" Margin="260,60,0,0" VerticalAlignment="Top" Click="ShowProducts_Click" Width="220" Height="20"/>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="20,100,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="220" Height="170"/>
+        <Label Content="Kundendaten eingeben:" HorizontalAlignment="Left" Margin="25,100,0,0" VerticalAlignment="Top"/>
+        <Label Content="Vorname:" HorizontalAlignment="Left" Margin="25,125,0,0" VerticalAlignment="Top" Width="85"/>
+        <TextBox x:Name="FirstNameInput" HorizontalAlignment="Left" Margin="110,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray" Height="20"/>
+        <Label Content="Nachname:" HorizontalAlignment="Left" Margin="25,150,0,0" VerticalAlignment="Top" Width="85"/>
+        <TextBox x:Name="LastNameInput" HorizontalAlignment="Left" Margin="110,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray" Height="20"/>
+        <Label Content="Alter:" HorizontalAlignment="Left" Margin="25,175,0,0" VerticalAlignment="Top" Width="85"/>
+        <TextBox x:Name="AgeInput" HorizontalAlignment="Left" Margin="110,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray" Height="20"/>
+        <Label Content="E-Mail:" HorizontalAlignment="Left" Margin="25,200,0,0" VerticalAlignment="Top" Width="85"/>
+        <TextBox x:Name="EMailInput" HorizontalAlignment="Left" Margin="110,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray" Height="20"/>
+        <Button x:Name="CreateCustomer" Content="Kunde erstellen" HorizontalAlignment="Left" Margin="30,238,0,0" VerticalAlignment="Top" Width="200" Click="CreateCustomer_Click" Height="20"/>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="260,100,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="220" Height="200"/>
+        <Label Content="Produktdaten eingeben:" HorizontalAlignment="Left" Margin="265,100,0,0" VerticalAlignment="Top"/>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="265,125,0,0" VerticalAlignment="Top" Width="85"/>
+        <TextBox x:Name="NameInput" HorizontalAlignment="Left" Margin="350,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray" Height="20"/>
+        <Label Content="Beschreibung:" HorizontalAlignment="Left" Margin="265,150,0,0" VerticalAlignment="Top" Width="85"/>
+        <TextBox x:Name="DescriptionInput" HorizontalAlignment="Left" Margin="350,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray" Height="20"/>
+        <Label Content="Preis:" HorizontalAlignment="Left" Margin="265,175,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.938,0.464" Width="85"/>
+        <TextBox x:Name="PriceInput" HorizontalAlignment="Left" Margin="350,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray" Height="20"/>
+        <Label Content="Mindestalter:" HorizontalAlignment="Left" Margin="265,200,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.938,0.464" Width="85"/>
+        <TextBox x:Name="AgeMinInput" HorizontalAlignment="Left" Margin="350,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray" Height="20"/>
+        <Label Content="Maximalalter:" HorizontalAlignment="Left" Margin="265,225,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.938,0.464" Width="85"/>
+        <TextBox x:Name="AgeMaxInput" HorizontalAlignment="Left" Margin="350,228,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="DarkSlateGray" Height="20"/>
+        <Button x:Name="CreateProduct" Content="Produkt erstellen" HorizontalAlignment="Left" Margin="270,263,0,0" VerticalAlignment="Top" Width="200" Click="CreateProduct_Click" Height="20"/>
+        <Button x:Name="ClearOutput" Content="Anzeige leeren" HorizontalAlignment="Left" Margin="20,280,0,0" VerticalAlignment="Top" Width="220" Click="ClearOutput_Click"/>
+        <DataGrid x:Name="ReferenceLine" Margin="20,310,20,107" HeadersVisibility="None" Visibility="Hidden" IsReadOnly="True"/>
+        <DataGrid x:Name="OutputDataGrid" Margin="20,350,20,39" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" HeadersVisibility="None"/>
+        <Grid x:Name="ButtonsRecommendDelete" VerticalAlignment="Bottom" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button x:Name="Recommend" Grid.Column="0" Click="Recommend_Click" Height="20"/>
-            <Button x:Name="Delete" Grid.Column="1" Click="Delete_Click" Height="20"/>
+            <Button x:Name="Recommend" Grid.Column="0" Click="Recommend_Click" Height="20" Margin="20,0,0,20"/>
+            <Button x:Name="Delete" Grid.Column="1" Click="Delete_Click" Height="20" Margin="-1,0,20,20"/>
         </Grid>
     </Grid>
 </Window>
