@@ -7,9 +7,6 @@ What you can do with it:
 - edit or delete directly data rows in the data table
 - search/filter in customers or products
 
-Bugs to fix:
-- view window is not always correct after deleting data rows
-
 To Do's:
 - add TextChanged to be able to save every change?
 - also show the customer or the product above their recommendations
