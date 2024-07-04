@@ -40,8 +40,6 @@ namespace _06_Angebote
 
             Customer.LoadCustomers();
             Product.LoadProducts();
-
-            this.Closing += MainWindow_Closing;
         }
 
         private bool isPlaceholderActive = true; //damit das Wort "Suchen" selbst nicht grau erscheint wenn man aktiv etwas eingibt
@@ -172,10 +170,10 @@ namespace _06_Angebote
             OutputDataGrid.ItemsSource = customers;
             OutputDataGrid.Columns.Clear();
             OutputDataGrid.HeadersVisibility = DataGridHeadersVisibility.Column;
-            OutputDataGrid.Columns.Add(new DataGridTextColumn { Header = "Vorname", Binding = new Binding("FirstName") });
-            OutputDataGrid.Columns.Add(new DataGridTextColumn { Header = "Nachname", Binding = new Binding("LastName") });
-            OutputDataGrid.Columns.Add(new DataGridTextColumn { Header = "Alter", Binding = new Binding("Age") });
-            OutputDataGrid.Columns.Add(new DataGridTextColumn { Header = "E-Mail", Binding = new Binding("Email") });
+            OutputDataGrid.Columns.Add(new DataGridTextColumn { Header = "Vorname", Binding = new Binding("FirstName") { UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged } });
+            OutputDataGrid.Columns.Add(new DataGridTextColumn { Header = "Nachname", Binding = new Binding("LastName") { UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged } });
+            OutputDataGrid.Columns.Add(new DataGridTextColumn { Header = "Alter", Binding = new Binding("Age") { UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged } });
+            OutputDataGrid.Columns.Add(new DataGridTextColumn { Header = "E-Mail", Binding = new Binding("Email") { UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged } });
         }
 
         private void PrepareDataGridForProducts(ObservableCollection<Product> products)
@@ -183,11 +181,11 @@ namespace _06_Angebote
             OutputDataGrid.ItemsSource = products;
             OutputDataGrid.Columns.Clear();
             OutputDataGrid.HeadersVisibility = DataGridHeadersVisibility.Column;
-            OutputDataGrid.Columns.Add(new DataGridTextColumn { Header = "Name", Binding = new Binding("Name") });
-            OutputDataGrid.Columns.Add(new DataGridTextColumn { Header = "Beschreibung", Binding = new Binding("Description") });
-            OutputDataGrid.Columns.Add(new DataGridTextColumn { Header = "Preis", Binding = new Binding("Price") });
-            OutputDataGrid.Columns.Add(new DataGridTextColumn { Header = "Mindestalter", Binding = new Binding("AgeMin") });
-            OutputDataGrid.Columns.Add(new DataGridTextColumn { Header = "Maximalalter", Binding = new Binding("AgeMax") });
+            OutputDataGrid.Columns.Add(new DataGridTextColumn { Header = "Name", Binding = new Binding("Name") { UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged } });
+            OutputDataGrid.Columns.Add(new DataGridTextColumn { Header = "Beschreibung", Binding = new Binding("Description") { UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged } });
+            OutputDataGrid.Columns.Add(new DataGridTextColumn { Header = "Preis", Binding = new Binding("Price") { UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged } });
+            OutputDataGrid.Columns.Add(new DataGridTextColumn { Header = "Mindestalter", Binding = new Binding("AgeMin") { UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged } });
+            OutputDataGrid.Columns.Add(new DataGridTextColumn { Header = "Maximalalter", Binding = new Binding("AgeMax") { UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged } });
         }
 
         private void ShowButtons(string zuEmpfehlen, string zuLöschen)
@@ -441,17 +439,22 @@ namespace _06_Angebote
             }
         }
 
-        private void MainWindow_Closing(object sender, CancelEventArgs e)
+        private void OutputDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            CommitDataGridEdits();
-            Customer.SaveCustomers();
-            Product.SaveProducts();
-        }
-
-        private void CommitDataGridEdits()
-        {
-            OutputDataGrid.CommitEdit(); //damit es auch speichert wenn ich noch in der Zelle drin bin
-            OutputDataGrid.CommitEdit(); //nochmalige Überprüfung der gesamten Zeile
+            if (e.EditAction == DataGridEditAction.Commit)
+            {
+                var element = e.EditingElement as TextBox;
+                if (element != null)
+                {
+                    var bindingExpression = element.GetBindingExpression(TextBox.TextProperty);
+                    if (bindingExpression != null)
+                    {
+                        bindingExpression.UpdateSource();
+                    }
+                }
+                Customer.SaveCustomers();
+                Product.SaveProducts();
+            }
         }
     }
 }
@@ -459,4 +462,3 @@ namespace _06_Angebote
 //validierung direkt bei Eingabe implementieren
 
 //anstatt messagebox den Kunden oder das Produkt auch anzeigen zu den empfohlenen Produkten bzw Kunden
-//speichern klappt nicht in Echtzeit, wenn ich neustarte ist alles weg (nur schließen speichert), mit TextChanged arbeiten??
