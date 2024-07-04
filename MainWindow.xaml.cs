@@ -438,24 +438,6 @@ namespace _06_Angebote
                 }
             }
         }
-
-        private void OutputDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            if (e.EditAction == DataGridEditAction.Commit)
-            {
-                var element = e.EditingElement as TextBox;
-                if (element != null)
-                {
-                    var bindingExpression = element.GetBindingExpression(TextBox.TextProperty);
-                    if (bindingExpression != null)
-                    {
-                        bindingExpression.UpdateSource();
-                    }
-                }
-                Customer.SaveCustomers();
-                Product.SaveProducts();
-            }
-        }
     }
 }
 
