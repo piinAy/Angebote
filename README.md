@@ -8,7 +8,6 @@ What you can do with it:
 - search/filter in customers or products
 
 To Do's:
-- add TextChanged to be able to save every change?
 - also show the customer or the product above their recommendations
 - re-add validations (adjusted)
 
