@@ -41,7 +41,7 @@
         <Button x:Name="CreateProduct" Content="Produkt erstellen" HorizontalAlignment="Left" Margin="270,263,0,0" VerticalAlignment="Top" Width="200" Click="CreateProduct_Click" Height="20"/>
         <Button x:Name="ClearOutput" Content="Anzeige leeren" HorizontalAlignment="Left" Margin="20,280,0,0" VerticalAlignment="Top" Width="220" Click="ClearOutput_Click"/>
         <DataGrid x:Name="ReferenceLine" Margin="20,310,20,107" HeadersVisibility="None" Visibility="Hidden" IsReadOnly="True"/>
-        <DataGrid x:Name="OutputDataGrid" Margin="20,350,20,39" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" HeadersVisibility="None"/>
+        <DataGrid x:Name="OutputDataGrid" Margin="20,350,20,39" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" HeadersVisibility="None" CellEditEnding="OutputDataGrid_CellEditEnding"/>
         <Grid x:Name="ButtonsRecommendDelete" VerticalAlignment="Bottom" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
